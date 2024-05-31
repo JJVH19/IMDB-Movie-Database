@@ -1,3 +1,8 @@
+// Author: Jose Juan Velasquez
+// Date created: 08/25/2023
+// Description: This file manages the average node degreee, number fo connected components, graph density,
+// graph diameter and average path length of the IMDB movie dataset graph tool
+
 export default class GraphClass {
     constructor() {
         this.graph = {
