@@ -2,6 +2,7 @@
 import GraphClass from './GraphClass.js';
 
 // Author: Jose Juan Velasquez
+// Date created: 08/25/2023
 // Description: This tool allows for users to view a graph of connections between movies
 // from an IMDB movie dataset given. This allowed me to explore the principles of human computer interaction
 // to implement in JavaScript an interactive IMDB Movie database tool,
@@ -12,13 +13,17 @@ let text = 1;
 let labelDisplay = 0;
 const width = screen.width;
 const height = screen.height;
+
+//mode variable indicates if we are dealing with the largest connected component graph or regular graph
+//mode == 1 means largest component graph, otherwise regular graph
 let mode = 0;
+
+//A copy of the original graph object whose changes will be synced with the largest connected component graph
 let graphObjCopy = {
     nodes: [],
     edges: [],
     nodeDegrees: {}
 };
-
 
 //This function is dedicated to editing a selected node from the user as well as editing the actual database
 function editNode(graphObj, d) {
@@ -67,7 +72,7 @@ function editNode(graphObj, d) {
         }
     }
 
-    //
+    //Any changes done to the graph will be stored in these two arrays
     let options = [];
     let optionsCopy = [];
     for (let i = 0; i < graphObj.graph.edges.length; i++) {
@@ -87,6 +92,7 @@ function editNode(graphObj, d) {
         }
     }
 
+    //Identifies what type of category the user wants to change on the node
     if (enterEdit === "rank" || enterEdit === "Rank") {
         let newEdit = prompt("Type in the rank you want to change or click cancel to exit", d.rank)
         let confirmPrompt = confirm('Confirm or deny');
@@ -218,12 +224,17 @@ function editNode(graphObj, d) {
             }
         }
 
+        //Store the names of the movies that are connected to the user's selected node
         for (let i = 0; i < names.length; i++) {
             display.push("\n" + names[i].name)
         }
+
+        //Save the name of the movie the user wants to disconnect from the node
         let disconnectEdges = prompt('These movies are connected to: ' + d.name + display + '\n' + '\nWhich of these movies do you want to disconnect?\n');
         disconnectEdges = disconnectEdges.trim();
         let confirmPrompt = confirm('Confirm or deny');
+
+        //Once the user confirms the decision, initate the disconnection process
         if (confirmPrompt === true) {
             for (let i = 0; i < names.length; i++) {
                 if (names[i].name === disconnectEdges) {
@@ -248,14 +259,12 @@ function editNode(graphObj, d) {
             for (let j = 0; j < graphObj.graph.edges.length; j++) {
                 if (graphObj.graph.edges[j].target === disconnectEdges) {
                     graphObj.graph.edges.splice(j, 1);
-                    //break;
                 }
             }
             if (mode === 1) {
                 for (let j = 0; j < graphObjCopy.edges.length; j++) {
                     if (graphObjCopy.edges[j].source === disconnectEdges) {
                         graphObjCopy.edges.splice(j, 1);
-                        //break;
                     }
                 }
                 for (let j = 0; j < graphObjCopy.edges.length; j++) {
@@ -284,6 +293,7 @@ function editNode(graphObj, d) {
     }
 }
 
+//Edits the information displayed on the display bar
 function detailsOnDemand(k) {
     document.getElementById("Poster").innerHTML ="<img src="+ k.large_img_link + "width=250 height=350>";
     document.getElementById("nameDisplay").innerHTML = "Movie Name: "+k.name
@@ -296,6 +306,7 @@ function detailsOnDemand(k) {
     document.getElementById("totalDuration").innerHTML = "Total Duration: "+k.duration+" min"
 }
 
+//This function highlights the edge connections between nodes for better user visbility
 function highlightEdges(node,link,k) {
     let connections;
     let currentNode = null;
@@ -314,6 +325,7 @@ function highlightEdges(node,link,k) {
     })
 }
 
+//This function generates the whole graph display based on the IMDB movie dataset graph object
 function renderGraph(graphObj) {
     console.log(graphObj)
     let layout = 1;
@@ -328,25 +340,26 @@ function renderGraph(graphObj) {
 
     // The force simulation mutates links and nodes, so create a copy
     // so that re-evaluating this cell produces the same result.
-    defaultRender(nodes,links,ticked);
+    defaultRender(nodes, links, ticked);
 
-    document.getElementById("layout").addEventListener("click", function(){
-        if(layout === 0){
-            let simulation = defaultRender(nodes,links,ticked);
+    //Manages the new render display for node layouts based on the user's decision
+    document.getElementById("layout").addEventListener("click", function () {
+        if (layout === 0) {
+            let simulation = defaultRender(nodes, links, ticked);
             layout = 1;
             simulation.restart();
-        } else{
-            let simulation = newRender(nodes,links,ticked)
+        } else {
+            let simulation = newRender(nodes, links, ticked)
             layout = 0;
             simulation.restart();
         }
     });
 
     // Create the SVG container.
-    const svg = svgContainer(graphObj,nodes);
+    const svg = svgContainer(graphObj, nodes);
 
     //Create lines for each edge
-    let link = linkCreator(svg,links);
+    let link = linkCreator(svg, links);
 
     //Create circles for each node
     let node = svg.selectAll(".circle")
@@ -359,15 +372,15 @@ function renderGraph(graphObj) {
         .attr("fill", "lightblue")
         .attr("stroke", "black")
         .attr("stroke-width", 1.5)
-        .attr("id", d=>d.id)
-        .on("mouseover", function(event,k){
-            highlightEdges(node,link,k)
+        .attr("id", d => d.id)
+        .on("mouseover", function (event, k) {
+            highlightEdges(node, link, k)
             detailsOnDemand(k);
         })
-        .on("mouseout", function(){
-            link.style("stroke", "gray").style("stroke-width",1);
+        .on("mouseout", function () {
+            link.style("stroke", "gray").style("stroke-width", 1);
         })
-        .on("mousedown", function(event, d) {
+        .on("mousedown", function (event, d) {
             d3.select(this).attr("r", 17)
             isHolding = true;
             holdTimer = setTimeout(() => {
@@ -377,9 +390,9 @@ function renderGraph(graphObj) {
             }, 0);
 
         })
-        .on("mouseup", function(event, d) {
+        .on("mouseup", function (event, d) {
             if (startNode === d) {
-                editNode(graphObj,d);
+                editNode(graphObj, d);
             } else {
                 d3.select(this).attr("r", 12)
                 if (holdTimer) {
@@ -411,42 +424,45 @@ function renderGraph(graphObj) {
 
     //Create title label for each node
     node.append("title")
-        .text(function(d){
-            return "RANK: "+d.rank+'\n'+"ID: "+d.id+'\n'+"NAME: "+d.name+'\n'+"YEAR OF RELEASE: "+d.year+'\n'+"IMDB RATING : "+d.imdb_rating+'\n'+"TOTAL DURATION: "+d.duration+' min\n'+"DIRECTOR NAME(S): "+d.director_name+'\n'+"GENRE: "+d.genre;
+        .text(function (d) {
+            return "RANK: " + d.rank + '\n' + "ID: " + d.id + '\n' + "NAME: " + d.name + '\n' + "YEAR OF RELEASE: " + d.year + '\n' + "IMDB RATING : " + d.imdb_rating + '\n' + "TOTAL DURATION: " + d.duration + ' min\n' + "DIRECTOR NAME(S): " + d.director_name + '\n' + "GENRE: " + d.genre;
         })
-
 
     //Create text label for each node
     let labels = svg.selectAll(".labels")
         .data(nodes)
         .enter()
         .append("text")
-        .attr("x",5)
-        .attr("y",10)
-        .attr("style","font-size:18")
-        .attr("stroke","darkmagenta")
-        .attr("id", function(d){
-            return "t"+d.id;
+        .attr("x", 5)
+        .attr("y", 10)
+        .attr("style", "font-size:18")
+        .attr("stroke", "darkmagenta")
+        .attr("id", function (d) {
+            return "t" + d.id;
         });
 
-    if(text === 1){
-        labels.text(d=>d.id.slice(-4))
-            .attr("id", function(d){
+    //Enters first condition if the user displays the movie's ID
+    //Enters second condition if the user displays the movie's name
+    //Enters the third condition if the user displays the movie's genre
+    //Enters the fourth condition if the user displays the movie's director name
+    if (text === 1) {
+        labels.text(d => d.id.slice(-4))
+            .attr("id", function (d) {
                 return "t" + d.id;
             });
-    } else if(text === 2){
-        labels.text(d=>d.name)
-            .attr("id", function(d){
+    } else if (text === 2) {
+        labels.text(d => d.name)
+            .attr("id", function (d) {
                 return "t" + d.id;
             });
-    } else if(text === 3){
-        labels.text(d=>d.genre)
-            .attr("id", function(d){
+    } else if (text === 3) {
+        labels.text(d => d.genre)
+            .attr("id", function (d) {
                 return "t" + d.id;
             });
-    }else if(text === 4){
-        labels.text(d=>d.director_name)
-            .attr("id", function(d){
+    } else if (text === 4) {
+        labels.text(d => d.director_name)
+            .attr("id", function (d) {
                 return "t" + d.id;
             });
     }
@@ -478,6 +494,7 @@ function renderGraph(graphObj) {
     }
 }
 
+//This function is the default layout of the nodes
 function defaultRender(nodes,links,ticked){
     return d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).distance(155))
@@ -487,6 +504,7 @@ function defaultRender(nodes,links,ticked){
         .on("tick", ticked);
 }
 
+//This function makes a different layout for the nodes
 function newRender(nodes,links,ticked){
     return d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).distance(130))
@@ -497,6 +515,7 @@ function newRender(nodes,links,ticked){
         .on("tick", ticked);
 }
 
+//This function creates and manages the svg container, allows for the user to click on the canvas to make a new movie node
 function svgContainer(graphObj,nodes){
     return d3.select("#graphviz").append("svg")
         .attr("viewBox", '-270 0 ' + (screen.width+200) + " " + screen.height)
@@ -553,6 +572,7 @@ function svgContainer(graphObj,nodes){
         });
 }
 
+//This function creates the lines linking the nodes together
 function linkCreator(svg,links){
     return svg.append("g")
         .style("stroke", "#999")
@@ -563,6 +583,7 @@ function linkCreator(svg,links){
         .attr("stroke", "gray")
         .style("stroke-width", ((d) => Math.sqrt(d.value)));
 }
+
 /*
     Function to fetch the JSON data from output_graph.json & call the renderGraph() method
     to visualize this data
@@ -599,8 +620,10 @@ function displayGraphStatistics(graphObj) {
     });
 }
 
+//Calls the search_node() function once the search button is clicked
 document.getElementById("search").onclick = function() {search_node()};
 
+//Manages the text display the nodes have
 document.getElementById("text_display").addEventListener("click",function(){
     console.log(labelDisplay)
     if(labelDisplay%2 === 1){
@@ -621,6 +644,7 @@ document.getElementById("text_display").addEventListener("click",function(){
 
 });
 
+//This function resets the graphs once the page refreshes or a new search is made
 function resetGraphSearch() {
     graphObj.graph.nodes.forEach(node => {
         let theNode = d3.select("#" + node.id);
@@ -632,6 +656,7 @@ function resetGraphSearch() {
     })
 }
 
+//This function edits the node's attributes if it falls under a search category
 function changeNode(node) {
     let theNode = d3.select("#" + node.id);
     let theLabel = d3.select("#t" + node.id);
@@ -642,11 +667,14 @@ function changeNode(node) {
         .attr("fill", "red");
 }
 
+//This function handles the graph search for the node the user wants to see
 function search_node() {
     let userInput = document.getElementById("searchbar");
     resetGraphSearch();
     let found = false;
 
+    //The conditions will search for the criteria the user wants to see, if it does not find it, it will
+    //continue to search based on different criteria until it either finds the nodes or it doesn't
     graphObj.graph.nodes.forEach(node => {
         if (node.rank === userInput.value.trim()) {
             changeNode(node);
@@ -701,6 +729,7 @@ function search_node() {
         }
     })
 
+    //Could not find the movie the user wanted to search for
     if (!found) {
         alert("Could not find movie. Check your spelling.")
     }
@@ -713,17 +742,20 @@ let largest = new GraphClass();
 // your saved graph file from Homework 1
 let fileName="output_graph.json"
 
-// render the graph in the browser
+//Render the graph in the browser
 loadAndRenderGraph(fileName);
 
-// compute and display simple statistics on the graph
+//Compute and display simple statistics on the graph
 displayGraphStatistics(graphObj);
 
+//Renders the largest connected component graph layout
 document.getElementById("largest").onclick = function() {
     mode = 1;
     largest.graph = graphObj.findLargestConnectedComponent();
     renderGraph(largest);
 }
+
+//Renders the original graph layout
 document.getElementById("normal").onclick = function() {
     mode = 0;
     graphObj.graph = graphObjCopy;

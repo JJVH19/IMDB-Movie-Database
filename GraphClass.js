@@ -61,8 +61,6 @@ export default class GraphClass {
         return ((sum/(size*size))+1);
     }
 
-
-
     // Problem 2) Find Largest Connected Component
     findLargestConnectedComponent() {
         let largeGraph = {
