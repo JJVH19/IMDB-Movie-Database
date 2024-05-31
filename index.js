@@ -1,9 +1,11 @@
 // import the GraphClass definition from GraphClass.js
 import GraphClass from './GraphClass.js';
 
-/*
-    Given some JSON data representing a graph, render it with D3
-*/
+// Author: Jose Juan Velasquez
+// Description: This tool allows for users to view a graph of connections between movies
+// from an IMDB movie dataset given. This allowed me to explore the principles of human computer interaction
+// to implement in JavaScript an interactive IMDB Movie database tool,
+// allowing for the user to edit, add or remove movies from the database and streamline user experience
 
 let nodeAdded = false;
 let text = 1;
@@ -18,207 +20,218 @@ let graphObjCopy = {
 };
 
 
+//This function is dedicated to editing a selected node from the user as well as editing the actual database
 function editNode(graphObj, d) {
+    //enterEdit variable gets the user's prompt answer
     let enterEdit = prompt('What do you want to edit from this movie?' +
         '\nRank\nName\nID\nGenre\nCast Name\nDirector Name\nWriter Name\nDisconnect\nDelete');
     enterEdit = enterEdit.trim();
-    console.log(enterEdit)
+
+    //Make a copy of the actual node passed into the function
     let temp = d;
+
+    //Makes a copy of the index position of the corresponding node we want to edit
     let index = 0;
     let copyIndex = 0;
-    for(let i = 0; i < graphObj.graph.nodes.length; i++){
-        if(graphObj.graph.nodes[i].rank === d.rank &&
+
+    //Traverse the database to find the selected movie from the user
+    for (let i = 0; i < graphObj.graph.nodes.length; i++) {
+        //If we find the corresponding node the user wants to edit, store the index position into the index variable
+        if (graphObj.graph.nodes[i].rank === d.rank &&
             graphObj.graph.nodes[i].name === d.name &&
             graphObj.graph.nodes[i].id === d.id &&
             graphObj.graph.nodes[i].cast_name === d.cast_name &&
             graphObj.graph.nodes[i].genre === d.genre &&
             graphObj.graph.nodes[i].director_name === d.director_name &&
-            graphObj.graph.nodes[i].writter_name === d.writter_name){
+            graphObj.graph.nodes[i].writter_name === d.writter_name) {
             index = i;
-            console.log(i)
             break;
         }
     }
 
-    if(mode === 1){
-        for(let i = 0; i < graphObjCopy.nodes.length; i++){
-            if(graphObjCopy.nodes[i].rank === d.rank &&
+    //Manages the second mode which involves the largest connected component aspect of the tool
+    if (mode === 1) {
+        //Traverse the database to find the selected movie from the user
+        for (let i = 0; i < graphObjCopy.nodes.length; i++) {
+            //If we find the corresponding node the user wants to edit, store the index position into the copyIndex variable
+            if (graphObjCopy.nodes[i].rank === d.rank &&
                 graphObjCopy.nodes[i].name === d.name &&
                 graphObjCopy.nodes[i].id === d.id &&
                 graphObjCopy.nodes[i].cast_name === d.cast_name &&
                 graphObjCopy.nodes[i].genre === d.genre &&
                 graphObjCopy.nodes[i].director_name === d.director_name &&
-                graphObjCopy.nodes[i].writter_name === d.writter_name){
+                graphObjCopy.nodes[i].writter_name === d.writter_name) {
                 copyIndex = i;
                 break;
             }
         }
     }
 
+    //
     let options = [];
     let optionsCopy = [];
-    for(let i = 0; i < graphObj.graph.edges.length; i++){
-        if(graphObj.graph.edges[i].source === d.id){
+    for (let i = 0; i < graphObj.graph.edges.length; i++) {
+        if (graphObj.graph.edges[i].source === d.id) {
             options.push(graphObj.graph.edges[i].target)
-        } else if (graphObj.graph.edges[i].target === d.id){
+        } else if (graphObj.graph.edges[i].target === d.id) {
             options.push(graphObj.graph.edges[i].source)
         }
     }
-    if(mode === 1){
-        for(let i = 0; i < graphObjCopy.edges.length; i++){
-            if(graphObjCopy.edges[i].source === d.id){
+    if (mode === 1) {
+        for (let i = 0; i < graphObjCopy.edges.length; i++) {
+            if (graphObjCopy.edges[i].source === d.id) {
                 optionsCopy.push(graphObjCopy.edges[i].target)
-            } else if (graphObjCopy.edges[i].target === d.id){
+            } else if (graphObjCopy.edges[i].target === d.id) {
                 optionsCopy.push(graphObjCopy.edges[i].source)
             }
         }
     }
 
-    if(enterEdit === "rank" || enterEdit === "Rank"){
-        let newEdit = prompt("Type in the rank you want to change or click cancel to exit",d.rank)
+    if (enterEdit === "rank" || enterEdit === "Rank") {
+        let newEdit = prompt("Type in the rank you want to change or click cancel to exit", d.rank)
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
+        if (confirmPrompt === true) {
             graphObj.graph.nodes.splice(index, 1);
             temp.rank = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.rank = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    } else if(enterEdit === "ID" || enterEdit === "id"){
-        let newEdit = prompt("Type in the ID you want to change or click cancel to exit",d.id)
+    } else if (enterEdit === "ID" || enterEdit === "id") {
+        let newEdit = prompt("Type in the ID you want to change or click cancel to exit", d.id)
         newEdit = newEdit.trim();
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
-            for(let i = 0; i < graphObj.graph.edges.length; i++){
-                if(graphObj.graph.edges[i].source === d.id){
+        if (confirmPrompt === true) {
+            for (let i = 0; i < graphObj.graph.edges.length; i++) {
+                if (graphObj.graph.edges[i].source === d.id) {
                     graphObj.graph.edges[i].source = newEdit;
                 }
-                if(graphObj.graph.edges[i].target === d.id){
+                if (graphObj.graph.edges[i].target === d.id) {
                     graphObj.graph.edges[i].target = newEdit;
                 }
             }
             graphObj.graph.nodes.splice(index, 1);
             temp.id = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.id = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    }else if(enterEdit === "Name" || enterEdit === "name"){
-        let newEdit = prompt("Type in the name you want to change or click cancel to exit",d.name)
+    } else if (enterEdit === "Name" || enterEdit === "name") {
+        let newEdit = prompt("Type in the name you want to change or click cancel to exit", d.name)
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
+        if (confirmPrompt === true) {
             graphObj.graph.nodes.splice(index, 1);
             temp.name = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.name = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    }else if(enterEdit === "Genre" || enterEdit === "genre"){
-        let newEdit = prompt("Type in the genre you want to change or click cancel to exit",d.genre)
+    } else if (enterEdit === "Genre" || enterEdit === "genre") {
+        let newEdit = prompt("Type in the genre you want to change or click cancel to exit", d.genre)
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
+        if (confirmPrompt === true) {
             graphObj.graph.nodes.splice(index, 1);
             temp.genre = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.genre = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    }else if(enterEdit === "Cast Name" || enterEdit === "cast name"){
-        let newEdit = prompt("Type in the cast name(s) you want to change or click cancel to exit",d.cast_name)
+    } else if (enterEdit === "Cast Name" || enterEdit === "cast name") {
+        let newEdit = prompt("Type in the cast name(s) you want to change or click cancel to exit", d.cast_name)
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
+        if (confirmPrompt === true) {
             graphObj.graph.nodes.splice(index, 1);
             temp.cast_name = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.cast_name = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    }else if(enterEdit === "Director Name" || enterEdit === "director name"){
-        let newEdit = prompt("Type in the director name(s) you want to change or click cancel to exit",d.director_name)
+    } else if (enterEdit === "Director Name" || enterEdit === "director name") {
+        let newEdit = prompt("Type in the director name(s) you want to change or click cancel to exit", d.director_name)
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
+        if (confirmPrompt === true) {
             graphObj.graph.nodes.splice(index, 1);
             temp.director_name = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.director_name = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    }else if(enterEdit === "Writer Name" || enterEdit === "writer name"){
-        let newEdit = prompt("Type in the writer name(s) you want to change or click cancel to exit",d.writter_name)
+    } else if (enterEdit === "Writer Name" || enterEdit === "writer name") {
+        let newEdit = prompt("Type in the writer name(s) you want to change or click cancel to exit", d.writter_name)
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true){
+        if (confirmPrompt === true) {
             graphObj.graph.nodes.splice(index, 1);
             temp.writter_name = newEdit.trim();
             graphObj.graph.nodes.push(temp);
-            if(mode === 1){
+            if (mode === 1) {
                 graphObjCopy.nodes.splice(copyIndex, 1);
                 temp.writter_name = newEdit.trim();
                 graphObjCopy.nodes.push(temp);
             }
             renderGraph(graphObj)
         }
-    }else if(enterEdit === "Disconnect" || enterEdit === "disconnect"){
+    } else if (enterEdit === "Disconnect" || enterEdit === "disconnect") {
         let names = [];
         let namesCopy = [];
         let display = [];
 
-        for(let i = 0; i < options.length; i++){
-            for(let j = 0; j < graphObj.graph.nodes.length; j++){
+        for (let i = 0; i < options.length; i++) {
+            for (let j = 0; j < graphObj.graph.nodes.length; j++) {
                 if (graphObj.graph.nodes[j].id === options[i]) {
-                    names.push({name: graphObj.graph.nodes[j].name,id:graphObj.graph.nodes[j].id});
+                    names.push({name: graphObj.graph.nodes[j].name, id: graphObj.graph.nodes[j].id});
                     break;
                 }
             }
         }
-        if(mode === 1){
-            for(let i = 0; i < optionsCopy.length; i++){
-                for(let j = 0; j < graphObjCopy.nodes.length; j++){
+        if (mode === 1) {
+            for (let i = 0; i < optionsCopy.length; i++) {
+                for (let j = 0; j < graphObjCopy.nodes.length; j++) {
                     if (graphObjCopy.nodes[j].id === optionsCopy[i]) {
-                        namesCopy.push({name: graphObjCopy.nodes[j].name,id:graphObjCopy.nodes[j].id});
+                        namesCopy.push({name: graphObjCopy.nodes[j].name, id: graphObjCopy.nodes[j].id});
                         break;
                     }
                 }
             }
         }
 
-        for(let i = 0; i < names.length;i++){
-            display.push("\n"+names[i].name)
+        for (let i = 0; i < names.length; i++) {
+            display.push("\n" + names[i].name)
         }
-        let disconnectEdges = prompt('These movies are connected to: ' + d.name + display+ '\n' + '\nWhich of these movies do you want to disconnect?\n');
+        let disconnectEdges = prompt('These movies are connected to: ' + d.name + display + '\n' + '\nWhich of these movies do you want to disconnect?\n');
         disconnectEdges = disconnectEdges.trim();
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true) {
+        if (confirmPrompt === true) {
             for (let i = 0; i < names.length; i++) {
                 if (names[i].name === disconnectEdges) {
                     disconnectEdges = names[i].id;
                     break;
                 }
             }
-            if(mode === 1){
+            if (mode === 1) {
                 for (let i = 0; i < namesCopy.length; i++) {
                     if (namesCopy[i].name === disconnectEdges) {
                         disconnectEdges = namesCopy[i].id;
@@ -238,7 +251,7 @@ function editNode(graphObj, d) {
                     //break;
                 }
             }
-            if(mode === 1){
+            if (mode === 1) {
                 for (let j = 0; j < graphObjCopy.edges.length; j++) {
                     if (graphObjCopy.edges[j].source === disconnectEdges) {
                         graphObjCopy.edges.splice(j, 1);
@@ -254,16 +267,16 @@ function editNode(graphObj, d) {
             }
         }
         renderGraph(graphObj)
-    } else if(enterEdit === "Delete" || enterEdit === "delete"){
+    } else if (enterEdit === "Delete" || enterEdit === "delete") {
         let confirmPrompt = confirm('Confirm or deny');
-        if(confirmPrompt === true) {
-            if(options.length === 0){
+        if (confirmPrompt === true) {
+            if (options.length === 0) {
                 graphObj.graph.nodes.splice(index, 1);
-                if(mode === 1 && optionsCopy.length === 0){
+                if (mode === 1 && optionsCopy.length === 0) {
                     graphObjCopy.nodes.splice(copyIndex, 1);
                 }
                 renderGraph(graphObj)
-            } else{
+            } else {
                 alert("You can only delete disconnected movies.")
             }
 
@@ -607,12 +620,6 @@ document.getElementById("text_display").addEventListener("click",function(){
     labelDisplay++;
 
 });
-// document.getElementById("instructions").onclick = function() {
-//     alert("1. Click in an empty space to add a new node.\n\tAdding nodes will make them static in the graph." +
-//         "\n\tOnce you add a new node, the previous node added will move with the others.\n\n" +
-//         "2. Click a node and drag your mouse to another node to connect them.\n\t" +
-//         "You cannot connect a node to itself.")
-// }
 
 function resetGraphSearch() {
     graphObj.graph.nodes.forEach(node => {
