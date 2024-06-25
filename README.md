@@ -2,7 +2,7 @@
 
 ## 1. Setup:
 
-* To use this tool, run the server.js provided and click the localhost link it provides
+* To use this tool, run the server.js provided and click the localhost link it provides. This assumes you have node.js installed on your device.
 
 ## 2. Adding nodes/movies to the graph:
 
@@ -23,19 +23,23 @@ Once you provided an attribute to search, the movies/nodes that meet the criteri
 
 ## 6. Delete Node/Movie and Edges:
 
-* As, you may have seen already, by clicking a node/movie you are also given the option to disconnect or delete a node/movie. By typing the name of the movie you want to disconnect the
+* As, you may have seen already, by clicking a node/movie you are also given the option to disconnect or delete a node/movie. 
+* By typing the name of the movie you want to disconnect the
 node/movie from, that movie will be disconnected from the node/movie you clicked.
-Finally, you can only delete nodes/movies that are completely disconnected. So, you will not be able to delete nodes/movies that are connected to another node/movie.
+* Finally, you can only delete nodes/movies that are completely disconnected. 
+* So, you will not be able to delete nodes/movies that are connected to another node/movie.
 
 ## 7. Change Node/Movie Label Display:
 
-* The drop-down menu will allow you to select what label you want to display for the nodes/movies. The options are:
-movie ID, movie name,genre/s,or director name/s.
+* The drop-down menu will allow you to select what label you want to display for the nodes/movies. 
+* The options are:
+** movie ID, movie name,genre/s,or director name/s.
 
 ## 8. Largest Connected Component:
 
-* The "Largest" button at the top will filter out the largest connected component. You can edit it the same way as described in the previous instructions.
-The "Normal" button will revert to the normal display and all the changes done in the largest connected component will be reflected in the normal display as well.
+* The "Largest" button at the top will filter out the largest connected component. 
+* You can edit it the same way as described in the previous instructions.
+* The "Normal" button will revert to the normal display and all the changes done in the largest connected component will be reflected in the normal display as well.
 
 ## 9. Changing Graph Layout:
 
