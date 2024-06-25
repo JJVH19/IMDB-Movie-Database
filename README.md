@@ -1,6 +1,6 @@
 ## Instructions on how to use this tool
 
-1. **Adding nodes/movies to the graph.**:
+1. *Adding nodes/movies to the graph.*:
 
 * Click in an empty space to add a new node/movie. Adding nodes/movies will make them static in the graph. Once you add a new node, the previous node added will move with the others. You can edit your node/movie at any time.
   
