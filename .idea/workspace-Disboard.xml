@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4290372f-1aad-4bdf-ad2a-fd2d41e91547" name="Changes" comment="Adjusted image size for laptop display" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2XUWHjWAQzk4Z2wQcgLc6Fc9F6d" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Velasquez__Jose__dev",
+    "last_opened_file_path": "C:/Users/josej/OneDrive/Documentos/U of A/Fall 2023/CSC343/csc343-f23-hw4-JJVH19",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.mocha.mocha_node_package_dir": "C:/Users/josej/OneDrive/Documentos/U of A/Fall 2023/CSC343/csc343-f23-hw4-JJVH19/node_modules/mocha",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.sync",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4290372f-1aad-4bdf-ad2a-fd2d41e91547" name="Changes" comment="" />
+      <created>1698684059070</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698684059070</updated>
+      <workItem from="1698684060157" duration="101000" />
+      <workItem from="1698684195005" duration="3688000" />
+      <workItem from="1698691479108" duration="2112000" />
+      <workItem from="1698694250282" duration="2554000" />
+      <workItem from="1698709142449" duration="3000" />
+      <workItem from="1698775090301" duration="4607000" />
+      <workItem from="1698856701268" duration="1017000" />
+      <workItem from="1698857961145" duration="2185000" />
+      <workItem from="1698947217055" duration="335000" />
+      <workItem from="1698947803504" duration="1541000" />
+      <workItem from="1698959935453" duration="2000" />
+      <workItem from="1699067024562" duration="2407000" />
+      <workItem from="1699118050675" duration="1828000" />
+      <workItem from="1699119917665" duration="6969000" />
+      <workItem from="1699126976925" duration="1014000" />
+      <workItem from="1699225843638" duration="983000" />
+      <workItem from="1699230577443" duration="2313000" />
+      <workItem from="1699233568336" duration="936000" />
+      <workItem from="1699248194100" duration="2966000" />
+      <workItem from="1699251364886" duration="150000" />
+      <workItem from="1699251688495" duration="239000" />
+      <workItem from="1699251950425" duration="68000" />
+      <workItem from="1699252156086" duration="106000" />
+      <workItem from="1700435757640" duration="163000" />
+      <workItem from="1700498607527" duration="84000" />
+      <workItem from="1700597369745" duration="3000" />
+      <workItem from="1710543602621" duration="81000" />
+    </task>
+    <task id="LOCAL-00001" summary="update">
+      <option name="closed" value="true" />
+      <created>1698687919935</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698687919935</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1698696821291</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698696821291</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Second update">
+      <option name="closed" value="true" />
+      <created>1698780001148</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698780001148</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Second update">
+      <option name="closed" value="true" />
+      <created>1698780107592</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698780107592</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Second update">
+      <option name="closed" value="true" />
+      <created>1698780146344</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698780146344</updated>
+    </task>
+    <task id="LOCAL-00006" summary="third update">
+      <option name="closed" value="true" />
+      <created>1698857715042</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698857715042</updated>
+    </task>
+    <task id="LOCAL-00007" summary="third update">
+      <option name="closed" value="true" />
+      <created>1698947520663</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698947520663</updated>
+    </task>
+    <task id="LOCAL-00008" summary="got test cases working">
+      <option name="closed" value="true" />
+      <created>1699068458378</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699068458378</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Implemented everything">
+      <option name="closed" value="true" />
+      <created>1699119894990</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699119894990</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Sync with both graphs">
+      <option name="closed" value="true" />
+      <created>1699124287197</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699124287197</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Sync with both graphs">
+      <option name="closed" value="true" />
+      <created>1699124297752</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699124297752</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Finishing HW4">
+      <option name="closed" value="true" />
+      <created>1699124984833</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699124984833</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Finishing HW4">
+      <option name="closed" value="true" />
+      <created>1699126949666</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699126949666</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Finishing HW4">
+      <option name="closed" value="true" />
+      <created>1699127878579</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699127878579</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Finishing HW4">
+      <option name="closed" value="true" />
+      <created>1699226794518</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699226794518</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Finishing HW4">
+      <option name="closed" value="true" />
+      <created>1699226832116</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699226832116</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updated README and fixed display">
+      <option name="closed" value="true" />
+      <created>1699232912289</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699232912289</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed id modifier">
+      <option name="closed" value="true" />
+      <created>1699234275491</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1699234275491</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fixed final bugs">
+      <option name="closed" value="true" />
+      <created>1699250007354</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699250007354</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed final bugs">
+      <option name="closed" value="true" />
+      <created>1699250408134</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699250408134</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Adjusted image size for laptop display">
+      <option name="closed" value="true" />
+      <created>1699251837454</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1699251837454</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <MESSAGE value="Second update" />
+    <MESSAGE value="third update" />
+    <MESSAGE value="got test cases working" />
+    <MESSAGE value="Implemented everything" />
+    <MESSAGE value="Sync with both graphs" />
+    <MESSAGE value="Finishing HW4" />
+    <MESSAGE value="Updated README and fixed display" />
+    <MESSAGE value="Fixed id modifier" />
+    <MESSAGE value="Fixed final bugs" />
+    <MESSAGE value="Adjusted image size for laptop display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted image size for laptop display" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tests.js</url>
+          <line>32</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
