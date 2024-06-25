@@ -7,12 +7,15 @@
 
 ## 2. Adding nodes/movies to the graph:
 
-* Click in an empty space to add a new node/movie. Adding nodes/movies will make them static in the graph. 
-* Once you add a new node, the previous node added will move with the others. You can edit your node/movie at any time.
+* Click in an empty space to add a new node/movie. 
+* Adding nodes/movies will make them static in the graph. 
+* Once you add a new node, the previous node added will move with the others. 
+* You can edit your node/movie at any time.
   
 ## 3. Connecting nodes/movies to each other:
  
-* Click a node and drag your mouse to another node to connect them. You cannot connect a node to itself.
+* Click a node and drag your mouse to another node to connect them. 
+* You cannot connect a node to itself.
 
 ## 4. Search Bar:
 
